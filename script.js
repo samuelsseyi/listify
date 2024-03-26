@@ -14,8 +14,9 @@ function arrayOperation() {
     cardDiv.innerHTML +=`
     <div class="card mx-auto my-3" >     
     <div class="card-body">
-    <h5 class="card-title">${theIndex+1}. ${toDoActivity}</h5>
-    <button class= "btn btn-outline-success btn-sm col-3 mx-1 ms-3" onclick="deleteToDo(${theIndex})">Done Task</button>
+    <h5 class="card-title fs-4">${theIndex+1}. ${toDoActivity.userInput}</h5>
+    <h5 class="card-title fs-5 ps-4">${toDoActivity.userDesp}</h5>
+    <button class= "btn btn-outline-success btn-sm col-3 mx-1 ms-3" onclick="taskDone(${theIndex})">Task Done</button>
     <button class= "btn btn-warning btn-sm col-3 mx-1 " data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="editToDo(${theIndex})">Edit Task</button>  
     </div>
     </div>
@@ -24,22 +25,24 @@ function arrayOperation() {
 }
 
 const mainAddToDo = () => {
-  let userinput = document.getElementById("mainToDoInput").value
-
-  if (userinput === ""){
+  let userInput = document.getElementById("mainToDoInput").value
+  let userDesp = document.getElementById('floatingTextarea2').value
+  if (userInput === "" || userDesp === ""){
     document.getElementById("errorDiv").style.display = "block"
-    errorDiv.innerHTML = "Enter ToDo Activity"
+    errorDiv.innerHTML = "Enter ToDo Activity and Description"
   } else{
-    toDo.push(userinput)
-    document.getElementById("mainToDoInput").value = ""
+    let userTask = {userInput,userDesp}
+    console.log(userTask);
+    toDo.push(userTask)
     arrayOperation()
+    document.getElementById("mainToDoInput").value = ""
+    document.getElementById("floatingTextarea2").value = ""
   }
-
 }
 
 
-const deleteToDo = (theIndex) =>{
-  let confirmation = window.confirm("This Action Will Remove Task From The List")
+const taskDone = (theIndex) =>{
+  let confirmation = window.confirm("This Action Will Remove The Task From The List")
 
   if (confirmation === true){
     toDo.splice(theIndex,1)
@@ -50,8 +53,6 @@ const deleteToDo = (theIndex) =>{
 let getIndex;
 const editToDo = (theIndex) =>{
   getIndex = theIndex
-  let taskToEdit = toDo[theIndex] 
-
   document.getElementById("editModalInput").value = taskToEdit
 }
 
@@ -63,29 +64,35 @@ const editModal = () => {
 
 
 const addToFirst = () =>{
-  let userinput = document.getElementById("addFirstInput").value
+  let userInput = document.getElementById("addFirstInput").value
+  let userDesp = document.getElementById("addFirstInputDesp").value
 
-  if (userinput === ""){
+  if (userInput === "" || userDesp === ""){
     document.getElementById("errorDiv").style.display = "block"
-    errorDiv.innerHTML = "Enter ToDo Activity"
+    errorDiv.innerHTML = "Enter ToDo Activity and Description"
   } else{
-    toDo.unshift(userinput)
-    document.getElementById("addFirstInput").value = ""
+    let userTask = {userInput, userDesp}
+    toDo.unshift(userTask)
     arrayOperation()
+    document.getElementById("addFirstInput").value = ""
+    document.getElementById("addFirstInputDesp").value = ""
   }
 }
 
 
 const addToLast = () =>{
-  let userinput = document.getElementById("addLastInput").value
+  let userInput = document.getElementById("addLastInput").value
+  let userDesp = document.getElementById("addLastInputDesp").value
 
-  if (userinput === ""){
+  if (userInput === "" || userDesp === ""){
     document.getElementById("errorDiv").style.display = "block"
-    errorDiv.innerHTML = "Enter ToDo Activity"
+    errorDiv.innerHTML = "Enter ToDo Activity and Description"
   } else{
-    toDo.push(userinput)
-    document.getElementById("addLastInput").value = ""
+    let userTask = {userInput, userDesp}
+    toDo.push(userTask)
     arrayOperation()
+    document.getElementById("addLastInput").value = ""
+    document.getElementById("addLastInputDesp").value = ""
   }
 }
 

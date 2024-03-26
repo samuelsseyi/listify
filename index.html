@@ -15,7 +15,7 @@
         <img src="img/Listify Logo.png" alt="Logo" width="70"  class="d-inline-block align-text-bottom">
         Listify 
       </a>
-      <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <button class="navbar-toggler d-md.-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -26,19 +26,19 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <button class="w-20 btn btn-outline-success my-3 mx-3 btn-lg">Add First Task</button>
+              <button class="w-20 btn btn-outline-success my-3 mx-3 btn-lg form-control" data-bs-toggle="modal" data-bs-target="#exampleModal">Add First Task</button>
             </li>
             <li class="nav-item">
-              <button class="w-20 btn btn-outline-primary my-3 mx-3 btn-lg">Add Last Task</button>
+              <button class="w-20 btn btn-outline-primary my-3 mx-3 btn-lg form-control" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add Last Task</button>
             </li>
             <li class="nav-item">
-              <button class="w-20 btn btn-outline-secondary my-3 mx-3 btn-lg">Delete First Task</button>
+              <button class="w-20 btn btn-outline-secondary my-3 mx-3 btn-lg form-control" onclick="deleteFirstTask()">Delete First Task</button>
             </li>
             <li class="nav-item">
-              <button class="w-20 btn btn-outline-dark my-3 mx-3 btn-lg">Delete Last Task </button>
+              <button class="w-20 btn btn-outline-dark my-3 mx-3 btn-lg form-control" onclick="deleteLastTask()">Delete Last Task </button>
             </li>
             <li class="nav-item">
-              <button class="w-20 btn my-3 mx-3 btn-lg btn-outline-danger">Delete All Tasks</button>
+              <button class="w-20 btn my-3 mx-3 btn-lg btn-outline-danger form-control" onclick="deleteAllTask()">Delete All Tasks</button>
             </li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
  <div class="container-fluid mt-5 pt-5 mx-auto" >
   <div class="row">
      <!-- Side Bar Div -->
-      <div id="sideBarDiv" class="col-12 col-lg-3  p-4 shadow-sm d-none d-md-block" style="position: sticky;">
+      <div id="sideBarDiv" class="col-lg-3  p-4 shadow-sm d-none d-md-block">
         <p class="fs-5 mt-3 ps-3 text-center">Task Management Made Easy</p>
         <button class="w-20 btn btn-outline-success my-3 mx-3 btn-lg form-control" data-bs-toggle="modal" data-bs-target="#exampleModal" >Add First Task</button>
         <button class="w-20 btn btn-outline-primary my-3 mx-3 btn-lg form-control" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add Last Task</button>
@@ -68,9 +68,15 @@
         <div class="container rounded-3 my-5 mb-5 p-3" id="dashboard">
           <p class="fs-1 fw-bold text-light text-center">What Will You Do Today?</p>
 
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" id="mainToDoInput" placeholder="Enter Your Task" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-dark" type="button" onclick="mainAddToDo()">Add To List</button>
+          <div class="form-floating mb-3">
+            <textarea type="text" class="form-control" id="mainToDoInput" placeholder="Enter Your Task" aria-label="Recipient's username" aria-describedby="button-addon2"> </textarea>
+            <label for="">Enter Your Task</label>
+          </div>
+
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Enter Your Task Description Here" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Task Description</label>
+            <button class="btn btn-dark my-3" type="button" onclick="mainAddToDo()">Add To List</button>
           </div>
 
           <div id="errorDiv" class="bg-danger p-2 fs-5 text-center text-light rounded-3" style="display: none;"></div>
@@ -84,10 +90,11 @@
           </div>
         </div>
 
-
-        <div id="cardDiv" style="display: none;">
+        <div class="container-fluid mx-auto col-12 col-lg-8">
+        <div id="cardDiv" style="display: none;" class="row">
         
-       </div>
+        </div>
+        </div>
 
 
       </div>
@@ -109,6 +116,7 @@
       </div>
       <div class="modal-body">
         <input type="text" class="form form-control" placeholder="Enter Your Task Here..." id="addFirstInput">
+        <input type="text" class="form form-control mt-4" placeholder="Enter Task Description Here..." id="addFirstInputDesp" style="height: 75px;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -132,6 +140,7 @@
       </div>
       <div class="modal-body">
         <input type="text" class="form form-control" placeholder="Enter Your Task Here..." id="addLastInput">
+        <input type="text" class="form form-control mt-4" placeholder="Enter Task Description Here..." id="addLastInputDesp" style="height: 75px;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
