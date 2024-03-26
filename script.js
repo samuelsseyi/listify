@@ -53,13 +53,23 @@ const taskDone = (theIndex) =>{
 let getIndex;
 const editToDo = (theIndex) =>{
   getIndex = theIndex
-  document.getElementById("editModalInput").value = taskToEdit
+  
+
+  document.getElementById("editModalInput").value = toDo[theIndex.userInput]
+  document.getElementById("editModalInputDesp").value = toDo[theIndex.userDesp]
 }
+
 
 const editModal = () => {
   let userInput = document.getElementById("editModalInput").value
-  toDo.splice(getIndex, 1, userInput)
+  let userDesp = document.getElementById("editModalInputDesp").value
+
+  let userTask = {userInput, userDesp}
+  toDo.splice(getIndex, 1, userTask)
   arrayOperation()
+
+  document.getElementById("editModalInput").value = ""
+  document.getElementById("editModalInputDesp").value = ""
 }
 
 
